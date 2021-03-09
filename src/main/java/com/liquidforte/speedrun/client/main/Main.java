@@ -17,17 +17,26 @@ public class Main {
         CSVPrinter printer = new CSVPrinter(out, CSVFormat.EXCEL);
 
         // TODO: write headers
-        printer.printRecord("Player", "Country", "Game", "Category", "Date", "Submitted", "Time", "Comment");
+        printer.printRecord("Player", "Country", "Game", "Platform", "Category", "Date", "Submitted", "Verified", "Emulated", "Time", "Comment");
 
         for (int offset = 0; offset < 10; offset++) {
             List<Run> runs = api.getRuns(offset * 20).getData();
             for (Run run : runs) {
-                if (!Strings.isNullOrEmpty(run.getPlayer())) {
+                if (!Strings.isNullOrEmpty(run.getPlayer()) && run.getDate() != null) {
                     User player = api.getUser(run.getPlayer()).getData();
                     Game game = api.getGame(run.getGame()).getData();
                     Category category = api.getCategory(run.getCategory()).getData();
-
-                    printer.printRecord(player.getName(), player.getCountry(), game.getName(), category.getName(), run.getDate(), run.getSubmitted(), run.getTimes().getPrimary(), run.getComment());
+                    printer.printRecord(player.getName(),
+                            player.getCountry(),
+                            game.getName(),
+                            run.getPlatform(),
+                            category.getName(),
+                            run.getDate(),
+                            run.getSubmitted(),
+                            run.isVerified(),
+                            run.isEmulated(),
+                            run.getTimes().getPrimary(),
+                            run.getComment());
                 }
             }
         }
