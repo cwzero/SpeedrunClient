@@ -9,7 +9,7 @@ public interface Speedrun {
     @RequestLine("GET /runs")
     Wrapper<List<Run>> getRuns();
 
-    @RequestLine("GET /runs?offset={offset}")
+    @RequestLine("GET /runs?offset={offset}&game=o1y9wo6q")
     Wrapper<List<Run>> getRuns(@Param("offset") long offset);
 
     @RequestLine("GET /runs/{id}")

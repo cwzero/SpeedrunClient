@@ -16,7 +16,6 @@ public class Main {
         Writer out = new FileWriter("data.csv");
         CSVPrinter printer = new CSVPrinter(out, CSVFormat.EXCEL);
 
-        // TODO: write headers
         printer.printRecord("Player", "Country", "Game", "Platform", "Category", "Date", "Submitted", "Verified", "Emulated", "Time", "Comment");
 
         for (int offset = 0; offset < 10; offset++) {
@@ -35,7 +34,7 @@ public class Main {
                             run.getSubmitted(),
                             run.isVerified(),
                             run.isEmulated(),
-                            run.getTimes().getPrimary(),
+                            run.getTimes().getPrimary_t(),
                             run.getComment());
                 }
             }
