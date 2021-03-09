@@ -4,7 +4,7 @@ This project is a client for the speedrun.com rest api.  It accesses raw data fr
 
 Directions:
 1. git clone https://github.com/cwzero/SpeedrunClient.git
-2. cd SpeedRunClient
+2. cd SpeedrunClient
 3. ./gradlew run
 
 Data output is in data.csv.
