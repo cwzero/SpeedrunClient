@@ -35,4 +35,7 @@ public interface Speedrun {
 
     @RequestLine("GET /categories/{id}")
     Wrapper<Category> getCategory(@Param("id") String id);
+
+    @RequestLine("GET /platforms/{id}")
+    Wrapper<Platform> getPlatform(@Param("id") String id);
 }

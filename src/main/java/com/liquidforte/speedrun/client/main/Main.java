@@ -1,6 +1,5 @@
 package com.liquidforte.speedrun.client.main;
 
-import com.google.common.base.Strings;
 import com.liquidforte.speedrun.client.*;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -21,14 +20,15 @@ public class Main {
         for (int offset = 0; offset < 10; offset++) {
             List<Run> runs = api.getRuns(offset * 20).getData();
             for (Run run : runs) {
-                if (!Strings.isNullOrEmpty(run.getPlayer()) && run.getDate() != null) {
+                if (run.getPlayer() != null && !run.getPlayer().trim().equals("") && run.getDate() != null) {
                     User player = api.getUser(run.getPlayer()).getData();
                     Game game = api.getGame(run.getGame()).getData();
                     Category category = api.getCategory(run.getCategory()).getData();
+                    Platform platform = api.getPlatform(run.getPlatform()).getData();
                     printer.printRecord(player.getName(),
                             player.getCountry(),
                             game.getName(),
-                            run.getPlatform(),
+                            platform.getName(),
                             category.getName(),
                             run.getDate(),
                             run.getSubmitted(),
